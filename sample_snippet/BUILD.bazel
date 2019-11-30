@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["sample_mysql_db_con.go"],
+    importpath = "github.com/sihwpg-github/hobby-pbs/simple_snippet/sample_snippet",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_go_sql_driver_mysql//:go_default_library"],
+)
+
+go_binary(
+    name = "sample_snippet",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
